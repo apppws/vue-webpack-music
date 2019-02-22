@@ -3,7 +3,7 @@
   <slot></slot>
   </div>
 </template>
-<script>
+<script type="text/ecmascript-6">
 import BScroll from 'better-scroll'
 export default {
   props:{
@@ -82,8 +82,27 @@ export default {
       if(this.$refs.wrapper){
         return
       }
+      // 创建一个scroll的属性 生成Bscroll 实例
+      this.scroll = new BScroll(this.$refs.wrapper,{
+        probeType:this.probeType,
+        click:this.click
+      })
+    },
+    enable(){
+      // 启用better-scroll 默认开启
+      this.scroll && this.scroll.enable()
+    },
+    refresh(){
+      // 强制 scroll 重新计算，当 better-scroll 中的元素发生变化的时候调用此方法
+      this.scroll && this.scroll.refresh()
     }
   },
-
+  watch: {
+    data(){
+        setTimeout(()=>{
+        this.refresh()
+        },this.refreshDelay)
+    }
+  },
 }
 </script>

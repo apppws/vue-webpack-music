@@ -1,29 +1,35 @@
 <template>
   <div>
-    <!-- 轮播图 S -->
-    <el-carousel indicator-position="outside" height="150px">
-      <el-carousel-item v-for="(v,k) in slider" :key="k">
-        <img :src="v.picUrl" alt>
-      </el-carousel-item>
-    </el-carousel>
-    <!-- 轮播图 E -->
-    <!-- 热门歌曲推荐 S -->
-    <div class="recommend-list" ref="wrapper">
-      <h1 class="list-title">热门歌单推荐</h1>
-      <ul>
-          <li v-for="item in discList" class="item" :key="item.key">
-              <div class="icon">
-                <img :src="item.imgurl" width="60" height="60" alt="">
-              </div>
-              <div class="text">
-                <h2 class="name" v-html="item.creator.name"></h2>
-                <p class="desc" v-html="item.dissname"></p>
-              </div>
-          </li>
-      </ul>
-      <div class="loading-wrapper"></div>
+  <Scroll class="recommend-conent" :data="discList">
+        <!-- 轮播图 S -->
+        <el-carousel indicator-position="outside" height="150px">
+          <el-carousel-item v-for="(v,k) in slider" :key="k">
+            <img :src="v.picUrl" alt>
+          </el-carousel-item>
+        </el-carousel>
+        <!-- 轮播图 E -->
+        <!-- 热门歌曲推荐 S -->
+        <div class="recommend-list" >
+          <h1 class="list-title">热门歌单推荐</h1>
+          <ul>
+              <li v-for="item in discList" class="item" :key="item.key">
+                  <div class="icon">
+                    <img :src="item.imgurl" width="60" height="60" alt="">
+                  </div>
+                  <div class="text">
+                    <h2 class="name" v-html="item.creator.name"></h2>
+                    <p class="desc" v-html="item.dissname"></p>
+                  </div>
+              </li>
+          </ul>
+          <div class="loading-wrapper"></div>
+        </div>
+        <!-- 热门歌曲推荐 E -->
+    </Scroll>
+    <!-- 正在加载中 -->
+    <div class="loading-container" v-show="!discList.length">
+        <loading></loading>
     </div>
-    <!-- 热门歌曲推荐 E -->
   </div>
 </template>
 <style lang="less" scoped>
@@ -97,8 +103,13 @@
 // api 接口
 import { getRecommend,getDiscList} from "../../api/recommend";
 import { ERR_OK } from "../../api/config";
- import BScroll from 'better-scroll'
+import Scroll from "../../functions/scroll"
+import loading from "../../functions/loading"
 export default {
+  components:{
+    Scroll,
+    loading
+  },
   data() {
     return {
       // 轮播图
@@ -108,9 +119,10 @@ export default {
     };
   },
   created() {
-    this._getRecommend();
+    setTimeout(()=>{
+         this._getRecommend()
+      },1000)
     this._getDiscList();
-    this.loadData();
   },
   methods: {
     // 轮播图
@@ -132,10 +144,17 @@ export default {
         }
       });
     },
-    // 懒加载
-    loadData(){
-
-    }
   }
 };
 </script>
+<style scoped>
+.loading-container{
+      position:absolute;
+      width:100%;
+      top :50%;
+      transform :translateY(-50%);
+      }
+
+</style>
+
+
