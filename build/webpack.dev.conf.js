@@ -50,25 +50,49 @@ const devWebpackConfig = merge(baseWebpackConfig, {
             poll: config.dev.poll,
         },
         before(app){
-          // 定义接口 回调传入两个参数  前端请求这个接口
-          app.get('/api/getDiscList', function(req, res) {
-            var url = 'https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg'
-            axios.get(url, {
-                headers: {
-                    referer: 'https://c.y.qq.com/',    //请求qq音乐的接口
-                    host: 'c.y.qq.com'
-                },
-                // 把前端传过来的params全部给qq的url
-                params: req.query
-            }).then(response => {
-              // 回调成功
-              console.log(response.data)
-                res.json(response.data)
-            }).catch(e => {
-              // 回调失败
-                console.log(e)
+              // 定义接口 回调传入两个参数  前端请求这个接口
+              app.get('/api/getDiscList', function(req, res) {
+                var url = 'https://c.y.qq.com/splcloud/fcgi-bin/fcg_get_diss_by_tag.fcg'
+                axios.get(url, {
+                    headers: {
+                        referer: 'https://c.y.qq.com/',    //请求qq音乐的接口
+                        host: 'c.y.qq.com'
+                    },
+                    // 把前端传过来的params全部给qq的url
+                    params: req.query
+                }).then(response => {
+                  // 回调成功
+                  console.log(response.data)
+                    res.json(response.data)
+                }).catch(e => {
+                  // 回调失败
+                    console.log(e)
+                })
+            });
+            app.get('/api/getSongList', function (req, res) {
+              var url = 'https://c.y.qq.com/qzone/fcg-bin/fcg_ucc_getcdinfo_byids_cp.fcg'
+              axios.get(url, {
+                  headers: {
+                      referer: 'https://c.y.qq.com/',
+                      host: 'c.y.qq.com'
+                  },
+                  params: req.query
+              }).then((response) => {
+                  var ret = response.data
+                  // 返回的是JSONP格式的话
+                  if (typeof ret === 'string') {
+                      var reg = /^\w+\(({.+})\)$/
+                      var matches = ret.match(reg)
+                      if (matches) {
+                          ret = JSON.parse(matches[1])
+                      }
+                  }
+                  res.json(ret)
+              }).catch((e)=> {
+                  console.log(e)
+              })
+
             })
-        })
         },
     },
 

@@ -1,4 +1,5 @@
 import Recommend from '../views/recommend'
+import RecommendDetail from '../views/recommend/details'
 import Singer from '../views/singer'
 import SingerDetail from "../views/singer/details"
 export default [
@@ -10,6 +11,10 @@ export default [
   {
     path: '/recommend',
     component: Recommend,
+    children:[{
+      path:'/recommend/:id',
+      component:RecommendDetail
+    }]
   },
   {
     path:'/singer',

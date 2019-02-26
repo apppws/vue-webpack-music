@@ -110,13 +110,13 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-  .singer{
-     position: fixed;
-    top: 88px;
-    bottom: 0;
-    width: 100%;
-  }
+<style lang="less">
+  // .singer{
+  //   position: absolute;
+  //   top: 88px;
+  //   bottom: 0;
+  //   width: 100%;
+  // }
 
 </style>
 

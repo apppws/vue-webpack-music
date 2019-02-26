@@ -1,10 +1,10 @@
 <template>
   <div ref="wrapper">
-  <slot></slot>
+    <slot></slot>
   </div>
 </template>
 <script>
-import BScroll from 'better-scroll'
+  import BScroll from 'better-scroll'
 export default {
   props:{
     // 1 滚动的时候会派发scroll事件 会截留

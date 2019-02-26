@@ -1,5 +1,6 @@
 <template>
-  <Scroll class="recommend-conent" :data="discList">
+<div class="recommend" ref="recommend">
+  <Scroll class="recommend-conent" :data="discList" ref="scroll">
         <!-- 轮播图 S -->
         <el-carousel indicator-position="outside" height="150px">
           <el-carousel-item v-for="(v,k) in slider" :key="k">
@@ -11,7 +12,7 @@
         <div class="recommend-list" >
           <h1 class="list-title">热门歌单推荐</h1>
           <ul>
-              <li v-for="item in discList" class="item" :key="item.key">
+              <li v-for="item in discList" class="item" :key="item.key" @click="selectItem(item)">
                   <div class="icon">
                     <img :src="item.imgurl" width="60" height="60" alt="">
                   </div>
@@ -29,37 +30,36 @@
           <loading></loading>
       </div>
     </Scroll>
-
+    <router-view></router-view>
+</div>
 </template>
-<style lang="less" scoped>
-.el-carousel {
-  overflow-x: hidden;
-  position: relative;
-  margin-top: 20px;
-}
-.el-carousel__item h3 {
-  color: #475669;
-  font-size: 18px;
-  opacity: 0.75;
-  line-height: 300px;
-  margin: 0;
-}
+<style lang="less">
+.recommend{
+    // position: fixed;
+    // width: 100%;
+    // top: 88px;
+    // bottom: 0;
+    .el-carousel {
+      overflow-x: hidden;
+      position: relative;
+      margin-top: 20px;
+      }
+      .el-carousel__item h3 {
+        color: #475669;
+        font-size: 18px;
+        opacity: 0.75;
+        line-height: 300px;
+        margin: 0;
+      }
 
-.el-carousel__item:nth-child(2n) {
-  background-color: #99a9bf;
-}
+      // .el-carousel__item:nth-child(2n) {
+      //   background-color: #99a9bf;
+      // }
 
-.el-carousel__item:nth-child(2n + 1) {
-  background-color: #d3dce6;
-}
+      // .el-carousel__item:nth-child(2n + 1) {
+      //   background-color: #d3dce6;
+      // }
 
-.recommend-list .list-title {
-    height: 65px;
-    line-height: 40px;
-    text-align: center;
-    font-size: 1rem;
-    color: #eeba0e;
-}
 .recommend-list {
     .list-title{
       height: 65px;
@@ -96,15 +96,27 @@
     }
   }
 }
+.loading-container{
+      position:absolute;
+      width:100%;
+      top :50%;
+      transform :translateY(-50%);
+      }
+}
+
 </style>
 
 <script>
 // api 接口
+ import Loading from '../../functions/loading'
 import { getRecommend,getDiscList} from "../../api/recommend";
 import { ERR_OK } from "../../api/config";
 import Scroll from "../../functions/scroll"
 import loading from "../../functions/loading"
+import { playListMixin } from '../../assets/js/mixin'
+import { mapMutations } from 'vuex'
 export default {
+  mixins: [playListMixin],
   components:{
     Scroll,
     loading
@@ -124,6 +136,17 @@ export default {
     this._getDiscList();
   },
   methods: {
+    handlePlayList(playlist) {
+        const bottom = playlist.length > 0 ? '60px' : ''
+        this.$refs.recommend.style.bottom = bottom
+        this.$refs.scroll.refresh()
+      },
+      loadImage() {
+        if (!this.checkedload) {
+          this.$refs.scroll.refresh()
+          this.checkedload = true
+        }
+      },
     // 轮播图
     _getRecommend() {
       getRecommend().then(res => {
@@ -143,17 +166,17 @@ export default {
         }
       });
     },
+     selectItem(item) {
+        this.$router.push({
+          path: `/recommend/${item.dissid}`
+        })
+        this.setDisc(item)
+      },
+      ...mapMutations({
+        setDisc: 'SET_DISC'
+      })
   }
 };
 </script>
-<style scoped>
-.loading-container{
-      position:absolute;
-      width:100%;
-      top :50%;
-      transform :translateY(-50%);
-      }
-
-</style>
 
 

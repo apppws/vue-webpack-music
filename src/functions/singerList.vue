@@ -104,9 +104,10 @@ const ANCHOR_HEIGHT = 18
             return
           }
         }
+        console.log(listHeight)
         // bottom
         this.currentIndex = listHeight.length - 2
-        console.log(this.currentIndex)
+        // console.log(this.currentIndex)
       },
       diff(newVal) {
         let fixedTop = (newVal > 0 && newVal < TITLE_HEIGHT) ? newVal - TITLE_HEIGHT : 0
@@ -128,6 +129,7 @@ const ANCHOR_HEIGHT = 18
         let firstTouch = e.touches[0]
         this.touch.y1 = firstTouch.pageY
         this.touch.anchorIndex = anchorIndex
+        // console.log(anchorIndex)
         this._scrollTo(anchorIndex)
       },
       onShortcutTouchMove(e) {
@@ -142,9 +144,10 @@ const ANCHOR_HEIGHT = 18
       // 监听scroll组件派发的scroll事件 获取滚动时的pos值
       scroll(pos) {
         this.scrollY = pos.y
-        console.log(this.scrollY)
+        // console.log(this.scrollY)
       },
       _scrollTo(index) {
+        // console.log(index)
         if (!index && index !== 0) {
           return
         }
@@ -177,41 +180,47 @@ const ANCHOR_HEIGHT = 18
     }
   }
 </script>
-<style scoped lang="less">
-.list-group{
-  padding-bottom: 30px;
-  .list-group-title{
-    height: 30px;
-    line-height: 30px;
-    padding-left: 20px;
-    background-color: #434a5e;
-    font-size:0.8rem;
-    color: #fff;
-  }
-  .list-group-item{
-        display: flex;
-        align-items: center;
-        padding: 20px 0 0 30px;
-        .avatar{
-          width: 50px;
-          height: 50px;
-          border-radius: 50%;
+<style lang="less">
+ .list-view{
+   position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #242b40;
+    .list-group{
+        padding-bottom: 30px;
+        .list-group-title{
+          height: 30px;
+          line-height: 30px;
+          padding-left: 20px;
+          background-color: #434a5e;
+          font-size:0.8rem;
+          color: #fff;
         }
+      .list-group-item{
+            display: flex;
+            align-items: center;
+            padding: 20px 0 0 30px;
+            .avatar{
+              width: 50px;
+              height: 50px;
+              border-radius: 50%;
+            }
 
-        .name{
-          margin-left: 20px;
-          color: #bdadad;
-          font-size:1rem;
-        }
+            .name{
+              margin-left: 20px;
+              color: #bdadad;
+              font-size:1rem;
+            }
 
-  }
+      }
 }
 // 右边列表
 .list-shortcut{
   position:absolute;
   z-index: 30;
   right: 5px;
-  top: 50%;
+  top: 55%;
   transform: translateY(-50%);
   width:20px;
   padding:20px 0;
@@ -252,6 +261,9 @@ const ANCHOR_HEIGHT = 18
       top: 50%;
       transform: translateY(-50%);
     }
+
+ }
+
 
 
 </style>
