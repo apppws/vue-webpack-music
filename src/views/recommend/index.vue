@@ -1,5 +1,4 @@
 <template>
-  <div>
   <Scroll class="recommend-conent" :data="discList">
         <!-- 轮播图 S -->
         <el-carousel indicator-position="outside" height="150px">
@@ -25,12 +24,12 @@
           <div class="loading-wrapper"></div>
         </div>
         <!-- 热门歌曲推荐 E -->
+        <!-- 正在加载中 -->
+      <div class="loading-container" v-show="!discList.length">
+          <loading></loading>
+      </div>
     </Scroll>
-    <!-- 正在加载中 -->
-    <div class="loading-container" v-show="!discList.length">
-        <loading></loading>
-    </div>
-  </div>
+
 </template>
 <style lang="less" scoped>
 .el-carousel {
@@ -140,7 +139,7 @@ export default {
         // console.log(res.data);
         if (res.code === ERR_OK) {
           this.discList = res.data.list;
-          console.log(this.discList);
+          // console.log(this.discList);
         }
       });
     },

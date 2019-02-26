@@ -22,18 +22,22 @@
     display: inline-block;
     vertical-align: top;
     margin-top: 6px;
-    width: 30px;
-    height: 32px;
+    width: 45px;
+    height: 40px;
     margin-right: 9px;
-    background-image: url("./lo.png");
-    background-size: 30px 32px;
+    background-image: url("./lo1.png");
+    background-size: 50px 40px;
   }
   .m_header .text {
     display: inline-block;
     vertical-align: top;
     line-height: 44px;
-    font-size: 2rem;
-    color: rgb(219, 138, 16);
+    font-size: 1.5rem;
+    /* color: #ca82b9; */
+   background: linear-gradient(to right, #ca82b9, blue);
+    -webkit-background-clip: text;
+        color: transparent;
+
   }
   .m_header .mine {
     position: absolute;

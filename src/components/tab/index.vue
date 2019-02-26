@@ -1,6 +1,6 @@
 <template>
   <div class="tab">
-    <router-link tag="div" class="tab-item" to="/">
+    <router-link tag="div" class="tab-item" to="/recommend">
       <span class="tab-link">推荐</span>
     </router-link>
     <router-link tag="div" class="tab-item" to="/singer">
@@ -14,7 +14,7 @@
     </router-link>
   </div>
 </template>
-<style scoped>
+<style scoped lang="less">
 .tab {
   display: flex;
   align-self: center;
@@ -22,21 +22,21 @@
   line-height: 2rem;
   font-size: 1rem;
   justify-content: space-around;
-}
-.tab-item {
+  .tab-item {
     flex: 1;
     text-align: center;
     align-self: center;
-  }
-  .tab-item .tab-link {
+    .tab-link {
       padding-bottom: 5px;
       color: #cdcdcd;
     }
-
-  .tab .router-link-active {
-    border-bottom: 2px solid #cb880f;
   }
-  .tab .tab-link {
+  .router-link-active {
+    border-bottom: 2px solid #cb0f55;
+  }
+  .tab-link {
       color: #fff;
     }
+}
+
 </style>

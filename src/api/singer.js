@@ -1,4 +1,4 @@
-import jsonp from 'common/js/jsonp'
+import jsonp from "../assets/js/jsonp";
 import { options } from './config'
 
 export function getSingerList() {

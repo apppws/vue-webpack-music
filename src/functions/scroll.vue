@@ -3,7 +3,7 @@
   <slot></slot>
   </div>
 </template>
-<script type="text/ecmascript-6">
+<script>
 import BScroll from 'better-scroll'
 export default {
   props:{
@@ -87,15 +87,45 @@ export default {
         probeType:this.probeType,
         click:this.click
       })
+      if (this.listenScroll) {
+          let _this = this
+          this.scroll.on('scroll', pos => {
+            // 派发事件获取pos 值
+            _this.$emit('scroll', pos)
+          })
+        }
+        // 上拉刷新
+        if (this.pullUp) {
+          this.scroll.on('scrollEnd', () => {
+            if (this.scroll.y <= (this.scroll.maxScrollY + 50)) {
+              this.$emit('scrollToEnd')
+            }
+          })
+        }
+
+        // 开始滚动前判断
+        if (this.beforeScroll) {
+          this.scroll.on('beforeScrollStart', () => {
+            this.$emit('beforeScroll')
+          })
+        }
     },
     enable(){
       // 启用better-scroll 默认开启
       this.scroll && this.scroll.enable()
     },
-    refresh(){
-      // 强制 scroll 重新计算，当 better-scroll 中的元素发生变化的时候调用此方法
-      this.scroll && this.scroll.refresh()
-    }
+     disable() {
+        this.scroll && this.scroll.disable()
+      },
+      refresh() {
+        this.scroll && this.scroll.refresh()
+      },
+      scrollTo() {
+        this.scroll && this.scroll.scrollTo.apply(this.scroll, arguments)
+      },
+      scrollToElement() {
+        this.scroll && this.scroll.scrollToElement.apply(this.scroll, arguments)
+      }
   },
   watch: {
     data(){

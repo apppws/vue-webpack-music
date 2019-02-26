@@ -8,8 +8,12 @@ import VueRouter from 'vue-router'
 import routes from './router/index'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import WeVue from 'we-vue'
+import 'we-vue/lib/style.css'
+import store from './store'
 Vue.use(ElementUI)
 Vue.use(VueRouter)
+Vue.use(WeVue)
 Vue.use(Lazyload, {
   fade: true
 })
@@ -24,6 +28,7 @@ Vue.config.productionTip = false
 new Vue({
     el: '#app',
     router,
+    store,
     components: { App },
     template: '<App/>'
 })
