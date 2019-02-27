@@ -53,6 +53,7 @@
 
   export default {
     mixins: [playListMixin],
+    // 接收参数
     props: {
       bgImage: {
         type: String,
@@ -102,6 +103,7 @@
       scroll(pos) {
         this.scrollY = pos.y
       },
+      // 点击返回上一页
       back() {
         this.$router.back()
       },
@@ -124,6 +126,7 @@
     watch: {
       scrollY(newVal) {
         let translateY = Math.max(this.minTransalteY, newVal)
+        // console.log(translateY)
         let scale = 1
         let zIndex = 0
         const percent = Math.abs(newVal / this.imageHeight)
@@ -146,6 +149,7 @@
         // 下拉背景图片伸缩
         this.$refs.bgImage.style[transform] = `scale(${scale})`
         this.$refs.bgImage.style.zIndex = zIndex
+
       }
     },
     components: {
@@ -243,7 +247,7 @@
     .bg-layer{
       position: relative;
       height: 100%;
-      background: blue;
+      background: #242b40;
     }
 
     .list{

@@ -6,6 +6,7 @@
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
+    <player></player>
   </div>
 </template>
 
@@ -13,11 +14,13 @@
   import "./assets/style.css"
   import MHeader from './components/mHeader/mHeader'
   import Tab from './components/tab/index'
+  import Player from './components/player/player'
   export default {
     name: 'app',
     components: {
       MHeader,
       Tab,
+      Player
     }
   }
 </script>
