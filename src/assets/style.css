@@ -12,6 +12,7 @@ body {
     text-align: left;
     max-height: 100%;
     background-color: #242b40;
+    font-family: 'music-icon'
 }
 
 a, a:hover {
@@ -41,3 +42,5 @@ em, i {
 h1, h2, h3, h4, h5, h6 {
     font-weight: normal
 }
+
+

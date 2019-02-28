@@ -12,6 +12,7 @@
 
 <script>
   import "./assets/style.css"
+  import "./assets/icon.css"
   import MHeader from './components/mHeader/mHeader'
   import Tab from './components/tab/index'
   import Player from './components/player/player'

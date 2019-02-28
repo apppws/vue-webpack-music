@@ -11,6 +11,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import WeVue from 'we-vue'
 import 'we-vue/lib/style.css'
 import store from './store'
+
 Vue.use(ElementUI)
 Vue.use(VueRouter)
 Vue.use(WeVue)

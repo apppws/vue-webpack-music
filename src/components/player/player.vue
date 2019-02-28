@@ -688,7 +688,7 @@
             text-align: left
           }
           .icon-favorite{
-            color: darkcyan;
+            color: #ed3e3e;
           }
         }
       &.normal-enter-active, &.normal-leave-active{
@@ -765,7 +765,7 @@
         padding: 0 10px;
         .icon-play-mini, .icon-pause-mini, .icon-playlist{
           font-size: 30px;
-          color: #fff;
+          color: #2e3231;
         }
         .icon-mini{
           font-size: 32px;
