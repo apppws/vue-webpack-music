@@ -36,9 +36,9 @@
       </scroll>
 </template>
 <script>
-import Scroll from "./scroll"
-import Loading from "./loading"
-import {getData} from "../assets/js/dom"
+import Scroll from "../scroll"
+import Loading from "../loading"
+import {getData} from "../../assets/js/dom"
 const ANCHOR_HEIGHT = 18
   const TITLE_HEIGHT = 30
   export default {
@@ -180,86 +180,87 @@ const ANCHOR_HEIGHT = 18
     }
   }
 </script>
-<style lang="less">
+<style lang="less" scoped>
  .list-view{
-   position: relative;
+     position: relative;
     width: 100%;
     height: 100%;
     overflow: hidden;
     background: #242b40;
-    .list-group{
-        padding-bottom: 30px;
-        .list-group-title{
-          height: 30px;
-          line-height: 30px;
-          padding-left: 20px;
-          background-color: #434a5e;
-          font-size:0.8rem;
-          color: #fff;
+      .list-group{
+          padding-bottom: 30px;
+          .list-group-title{
+            height: 30px;
+            line-height: 30px;
+            padding-left: 20px;
+            font-size:0.8rem;
+            color: #fff;
+            background-color: #434a5e;
+          }
+        .list-group-item{
+              display: flex;
+              align-items: center;
+              padding: 20px 0 0 30px;
+              .avatar{
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+              }
+
+              .name{
+                margin-left: 20px;
+                color: #bdadad;
+                font-size:1rem;
+              }
+
+          }
         }
-      .list-group-item{
-            display: flex;
-            align-items: center;
-            padding: 20px 0 0 30px;
-            .avatar{
-              width: 50px;
-              height: 50px;
-              border-radius: 50%;
+        // 右边列表
+        .list-shortcut{
+          position:absolute;
+          z-index: 30;
+          right: 5px;
+          top: 55%;
+          transform: translateY(-50%);
+          width:20px;
+          padding:20px 0;
+          background-color: #3c3649;
+          color: #fff;
+          text-align: center;
+          border-radius: 20px;
+          font-family: Helvetica;
+          .item{
+            padding: 3px;
+            line-height: 1;
+            color: #fff;
+            font-size: 0.8rem;
+            &.current{
+              color:#ef0e6a
             }
+          }
 
-            .name{
-              margin-left: 20px;
-              color: #bdadad;
-              font-size:1rem;
-            }
+        }
 
-      }
-}
-// 右边列表
-.list-shortcut{
-  position:absolute;
-  z-index: 30;
-  right: 5px;
-  top: 55%;
-  transform: translateY(-50%);
-  width:20px;
-  padding:20px 0;
-  background-color: #3c3649;
-  color: #fff;
-  text-align: center;
-  border-radius: 20px;
-  .item{
-    padding: 3px;
-    line-height: 1;
-    color: #fff;
-    font-size: 0.8rem;
-    &.current{
-      color:#ef0e6a
-    }
-  }
+        .list-fixed{
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              .fixed-title{
+                height: 30px;
+                line-height: 30px;
+                padding-left: 20px;
+                font-size:1rem;
+                color: #cdcdcd;
+                background:  #434a5e;;
+              }
 
-}
-
-.list-fixed{
-  position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      .fixed-title{
-        height: 30px;
-        line-height: 30px;
-        padding-left: 20px;
-        font-size:1rem;
-        color: #cdcdcd;
-        background:  #434a5e;;
-      }
-
-}
-    .loading-container{
-       position: absolute;
-      width: 100%;
-      top: 50%;
-      transform: translateY(-50%);
+        }
+      .loading-container{
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        transform: translateY(-50%);
     }
 
  }

@@ -8,7 +8,7 @@
  import { getSingerList } from '../../api/singer'
  import { ERR_OK } from "../../api/config"
  import Singer from "../../assets/js/singer"
- import SingerList from "../../functions/singerList"
+ import SingerList from "../../functions/singerList/singerList"
  import { mapMutations } from 'vuex'
  import { playListMixin } from '../../assets/js/mixin'
  const HOT_SINGER_LEN = 10
@@ -110,13 +110,13 @@ export default {
 }
 </script>
 
-<style lang="less">
-  // .singer{
-  //   position: absolute;
-  //   top: 88px;
-  //   bottom: 0;
-  //   width: 100%;
-  // }
-
+<style scoped>
+ .singer{
+    position: fixed;
+    top: 88px;
+    bottom: 0;
+    width: 100%;
+  }
 </style>
+
 
