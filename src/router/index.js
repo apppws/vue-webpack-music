@@ -2,6 +2,8 @@ import Recommend from '../views/recommend'
 import RecommendDetail from '../views/recommend/details'
 import Singer from '../views/singer'
 import SingerDetail from "../views/singer/details"
+import Rank from '../views/rank'
+import RankDetail from "../views/rank/details"
 export default [
   {
     path: '/',
@@ -22,6 +24,14 @@ export default [
     children:[{
       path: '/singer/:id',
       component: SingerDetail
+    }]
+  },
+  {
+    path:'/rank',
+    component:Rank,
+    children:[{
+      path: '/singer/:id',
+      component: RankDetail
     }]
   }
 ]
