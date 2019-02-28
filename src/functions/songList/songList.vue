@@ -55,6 +55,7 @@
 </script>
 
 <style scoped lang="less">
+
   .song-list{
     .item{
         display: flex;
@@ -73,6 +74,19 @@
           width: 25px;
           height: 24px;
           background-size: 25px 24px;
+          &.icon0{
+             background: url(./first@2x.png) no-repeat 0px 0px;
+             background-size: 100% 100%;
+          }
+          &.icon1 {
+            background: url(./second@2x.png) no-repeat 0px 0px;
+             background-size: 100% 100%;
+            }
+          &.icon2
+            {
+              background: url(./third@2x.png) no-repeat 0px 0px;
+             background-size: 100% 100%;
+            }
         }
         .text{
           color: cornflowerblue;

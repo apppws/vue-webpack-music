@@ -1,23 +1,24 @@
 <template>
   <div class="rank" ref="rank">
-    <scroll :data="topList" class="toplist" ref="toplist">
+    <scroll class="toplist" :data="topList" ref="topList">
       <ul>
-        <li class="item" v-for="item in topList" :key="item.id" @click="jump(item)">
+        <li class="item" v-for="item in topList" :key="item.key" @click="jump(item)">
           <div class="icon">
-            <img width="100" height="100" :src="item.picUrl">
+            <img src="" alt="" width="100" height="100" v-lazy="item.picUrl">
           </div>
           <ul class="songlist">
-            <li class="song" v-for="(song, index) in item.songList" :key="index">
-              <span>{{index + 1}}</span>
-              <span>{{song.songname}}-{{song.singername}}</span>
+            <li class="song" v-for="(song, index) in item.songList" :key="song.key">
+              <span> {{index + 1}} </span>
+              <span> {{song.songname}} - {{song.singername}} </span>
             </li>
           </ul>
         </li>
       </ul>
-      <div class="loading-container" v-if="!topList">
+      <div class="loading-container" v-show="!topList.length">
         <loading></loading>
       </div>
     </scroll>
+    <router-view></router-view>
   </div>
 </template>
 <script>
@@ -28,32 +29,33 @@ import { ERR_OK } from '../../api/config'
   import { playListMixin } from '../../assets/js/mixin'
   import { mapMutations } from 'vuex'
 export default {
-  data () {
-    return {
-      topList: []
-    }
-  },
-  created () {
-    this._getTopList()
-  },
-  components: {
+    mixins: [playListMixin],
+    data() {
+      return {
+        topList: []
+      }
+    },
+    created() {
+      this._getTopList()
+    },
+    components: {
       Scroll,
       Loading
     },
-  methods: {
-    handlePlayList(playlist) {
+    methods: {
+      handlePlayList(playlist) {
         const bottom = playlist.length > 0 ? '60px' : ''
         this.$refs.rank.style.bottom = bottom
         this.$refs.topList.refresh()
       },
-    _getTopList () {
-      getTopList().then((res) => {
-        if (res.code === ERR_OK) {
-          this.topList = res.data.topList
-        }
-      })
-    },
-    jump(item) {
+      _getTopList() {
+        getTopList().then(res => {
+          if (res.code === ERR_OK) {
+            this.topList = res.data.topList
+          }
+        })
+      },
+      jump(item) {
         this.$router.push({
           path: `/rank/${item.id}`
         })
@@ -62,7 +64,7 @@ export default {
       ...mapMutations({
         setTopList: 'SET_TOP_LIST'
       })
-  }
+    }
 }
 </script>
 <style lang="less" scoped>

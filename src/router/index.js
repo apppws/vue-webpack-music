@@ -30,7 +30,7 @@ export default [
     path:'/rank',
     component:Rank,
     children:[{
-      path: '/singer/:id',
+      path: '/rank/:id',
       component: RankDetail
     }]
   }
