@@ -48,7 +48,7 @@
     width: 100%;
     padding: 0 6px;
     height: 40px;
-    background: #5950a8;
+    background: #5d5a71;
     border-radius: 6px;
     .icon-search{
        font-size: 24px;
@@ -58,16 +58,16 @@
        flex: 1;
       margin: 0 5px;
       line-height: 18px;
-      background: #161111;
+      background: #78787800;
       color:#fff;
       font-size: 1rem;
       &::placeholder{
-        color: red;
+        color: #fff;
       }
     }
     .icon-dismiss{
       font-size: 16px;
-      color: blue;
+      color: #000;
     }
 
   }

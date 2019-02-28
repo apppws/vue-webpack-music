@@ -4,6 +4,7 @@ import Singer from '../views/singer'
 import SingerDetail from "../views/singer/details"
 import Rank from '../views/rank'
 import RankDetail from "../views/rank/details"
+import Seach from "../views/seach"
 export default [
   {
     path: '/',
@@ -33,5 +34,9 @@ export default [
       path: '/rank/:id',
       component: RankDetail
     }]
+  },
+  {
+    path:'/seach',
+    component:Seach
   }
 ]
