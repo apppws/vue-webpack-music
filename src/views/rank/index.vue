@@ -2,7 +2,7 @@
   <div class="rank" ref="rank">
     <scroll :data="topList" class="toplist" ref="toplist">
       <ul>
-        <li class="item" v-for="item in topList" :key="item.id">
+        <li class="item" v-for="item in topList" :key="item.id" @click="jump(item)">
           <div class="icon">
             <img width="100" height="100" :src="item.picUrl">
           </div>
